@@ -15,11 +15,10 @@ shinyUI(fluidPage(theme = shinytheme("lumen"),
         sidebarPanel(
             helpText("An nth degree polynomial in x"),
             HTML('<center><img src="polinomial-model.PNG" width="200"></center>'),
-#           HTML('<a href="https://www.codecogs.com/eqnedit.php?latex=y&space;=&space;\beta_{0}&space;&plus;&space;\beta_{1}X&space;&plus;&space;\beta_{2}X^{2}&space;&plus;&space;\beta_{3}X^{3}&space;&plus;&space;...&space;&plus;\beta_{n}X^{n}&space;&plus;&space;\varepsilon" target="_blank"><img src="https://latex.codecogs.com/gif.latex?y&space;=&space;\beta_{0}&space;&plus;&space;\beta_{1}X&space;&plus;&space;\beta_{2}X^{2}&space;&plus;&space;&space;...&space;&plus;\beta_{n}X^{n}&space;&plus;&space;\varepsilon" title="y = \beta_{0} + \beta_{1}X + \beta_{2}X^{2} + ... +\beta_{n}X^{n} + \varepsilon" /></a>'),
             p(),
-            # Select the polinomial grade
+            # Select the polinomial degree
             sliderInput("Predictor",
-                        "Select the predictor number (number n polynomial degree)",
+                        "Select the predictor number (the polynomial degree)",
                         min = 1,
                         max = 10,
                         value = 1),

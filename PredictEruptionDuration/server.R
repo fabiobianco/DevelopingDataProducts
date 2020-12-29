@@ -17,12 +17,8 @@ shinyServer(function(input, output) {
 
     #
     output$distPlot <- renderPlot({
-        # The new value to be used for prediction
+        # The new waiting value to be used for Eruption prediction
         waiting <- data.frame(waiting = input$Mins)
-        # Training a linear model
-        #fit <- train(eruptions ~ ., data = faithful, method = 'lm')
-        # Predict results
- #       results <- predict(fit, newdata=wait)
         #
         fit_faithful <- lm(eruptions ~ poly(waiting,input$Predictor), data = faithful)
         prd_faithful <- data.frame(waiting = seq(from = range(faithfuld$waiting)[1], to = range(faithfuld$waiting)[2], length.out = 200))
@@ -40,10 +36,8 @@ shinyServer(function(input, output) {
         g <- g + geom_smooth(aes(ymin = lci, ymax = uci), stat = "identity")
         g <- g + geom_point(faithful, mapping = aes(waiting, eruptions))
         g <- g + geom_label(aes(x = input$Mins, y = results$fit[1], label = as.character(round(results$fit[1],2))), fill = "white", fontface = "bold")
- #       g <- g + geom_label_repel(aes(label = Name), box.padding   = 0.35, point.padding = 0.5, segment.color = 'grey50')
         g <- g + geom_hline(yintercept = results$fit[1], linetype="dotted", color="grey", size=1)
         g <- g + geom_vline(xintercept = input$Mins, linetype="dotted", color="grey", size=1)
-#        g <- g + labs(title = "Polinomial Regression on faithful dataset")
         g <- g + labs(x = "Waiting time (mins)", y = "Eruption duration (mins)" )
         g
     })
