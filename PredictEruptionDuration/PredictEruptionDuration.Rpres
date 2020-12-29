@@ -1,43 +1,124 @@
-PredictEruptionDuration App
+Predict Eruption Duration Shiny app
 ========================================================
 author: by Fabiobianco
-date: "25/12/2020"
+date: "29/12/2020"
 autosize: true
 
-2 - First Slide
+Shiny app logic descripotion
 ========================================================
+```{r include=FALSE}
+library(rmarkdown)
+library(ggplot2)
+```
 
-For more details on authoring R presentations please visit <https://support.rstudio.com/hc/en-us/articles/200486468>.
-
-- Bullet 1
-- Bullet 2
-- Bullet 3
-
-3 - Slide With Code
-========================================================
+<small>In this Shiny app we apply a *Polinomial Regression Model* to the *Faithful Dataset* to predict the Eruption duration. What you will see is that the prediction improves as the degree of the polynomial increases.
+The Faithful dataset contains details of the eruption duration and the waiting time in between eruptions of the [Old Faithful Geyser](https://en.wikipedia.org/wiki/Old_Faithful) in Yellowstone National Park in Wyoming, United States.</small>
 
 ```{r}
-summary(faithful)
 head(faithful)
 ```
 
-4 -Slide With Plot
+
+Plot the Faithful Dataset
 ========================================================
 
 ```{r echo=TRUE}
 library(ggplot2)
-        g <- ggplot(faithful, mapping = aes(waiting, eruptions)) + geom_point()
-        g <- g + geom_smooth(method = loess)
-        g
+g <- ggplot(faithful, mapping = aes(waiting, eruptions)) + geom_point()
 ```
 
-5 - Slide With Plot
+```{r include=FALSE}
+png(filename="faithfuldataset.png")
+print(g)
+dev.off()
+```
+
+```{r echo=FALSE, fig.align='center'}
+include_graphics("faithfuldataset.png")
+```
+
+Eruption prediction with 1 degree Polynomial
+========================================================
+```{r}
+waiting_time = 50 # Waiting time for eruption prediction
+pol_degree1 = 1   # Polinomial degree
+```
+
+```{r include=FALSE}
+fit_faithful <- lm(eruptions ~ poly(waiting,pol_degree1), data = faithful)
+prd_faithful <- data.frame(waiting = seq(from = range(faithful$waiting)[1], to = range(faithful$waiting)[2], length.out = 200))
+err_faithful <- predict(fit_faithful, newdata = prd_faithful, se.fit = TRUE)
+waiting = 50
+results <- predict(fit_faithful, newdata = as.data.frame(waiting_time), se.fit = TRUE)
+prd_faithful$lci <- err_faithful$fit - 1.96 * err_faithful$se.fit
+prd_faithful$fit <- err_faithful$fit
+prd_faithful$uci <- err_faithful$fit + 1.96 * err_faithful$se.fit
+```
+
+```{r}
+as.numeric(results$fit[1])  # Eruption duration predicted
+```
+
+```{r include=FALSE}
+results$decription <- "Eruption duration"
+g <- ggplot(prd_faithful, mapping = aes(waiting,fit))
+g <- g + geom_smooth(aes(ymin = lci, ymax = uci), stat = "identity")
+g <- g + geom_point(faithful, mapping = aes(waiting, eruptions))#
+g <- g + geom_label(aes(x = as.integer(waiting_time), y = results$fit[1], label = as.character(round(results$fit[1],2))), fill = "white", fontface = "bold")
+g <- g + labs(title = "Polinomial Regression on faithful dataset")
+g <- g + labs(x = "Waiting time (mins)", y = "Eruption duration (mins)" )
+```
+
+```{r include=FALSE}
+png(filename="faithful1.png")
+print(g)
+dev.off()
+```
+
+```{r echo=FALSE, fig.align='center'}
+include_graphics("faithful1.png")
+```
+
+Eruption prediction with 4 degree Polynomial
 ========================================================
 
 ```{r}
-library(caret)
-    fit <- train(eruptions ~ ., data = faithful, method = 'lm')
-    fit
+waiting_time = 50 # Waiting time for eruption prediction
+pol_degree4 = 4   # Polinomial degree
 ```
 
+```{r include=FALSE}
+fit_faithful <- lm(eruptions ~ poly(waiting,pol_degree4), data = faithful)
+prd_faithful <- data.frame(waiting = seq(from = range(faithful$waiting)[1], to = range(faithful$waiting)[2], length.out = 200))
+err_faithful <- predict(fit_faithful, newdata = prd_faithful, se.fit = TRUE)
+waiting = 50
+results <- predict(fit_faithful, newdata = as.data.frame(waiting_time), se.fit = TRUE)
+prd_faithful$lci <- err_faithful$fit - 1.96 * err_faithful$se.fit
+prd_faithful$fit <- err_faithful$fit
+prd_faithful$uci <- err_faithful$fit + 1.96 * err_faithful$se.fit
+```
+
+```{r}
+as.numeric(results$fit[1]) # Eruption duration predicted
+```
+
+```{r include=FALSE}
+results$decription <- "Eruption duration"
+g <- ggplot(prd_faithful, mapping = aes(waiting,fit))
+g <- g + geom_smooth(aes(ymin = lci, ymax = uci), stat = "identity")
+g <- g + geom_point(faithful, mapping = aes(waiting, eruptions))#
+g <- g + geom_label(aes(x = as.integer(waiting_time), y = results$fit[1], label = as.character(round(results$fit[1],2))), fill = "white", fontface = "bold")
+g <- g + labs(title = "Polinomial Regression on faithful dataset")
+g <- g + labs(x = "Waiting time (mins)", y = "Eruption duration (mins)" )
+```
+
+```{r include=FALSE}
+png(filename="faithful4.png")
+print(g)
+dev.off()
+```
+
+```{r echo=FALSE, fig.align='center'}
+include_graphics("faithful4.png")
+```
 
