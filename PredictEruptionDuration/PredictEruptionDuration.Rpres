@@ -1,0 +1,43 @@
+PredictEruptionDuration App
+========================================================
+author: by Fabiobianco
+date: "25/12/2020"
+autosize: true
+
+2 - First Slide
+========================================================
+
+For more details on authoring R presentations please visit <https://support.rstudio.com/hc/en-us/articles/200486468>.
+
+- Bullet 1
+- Bullet 2
+- Bullet 3
+
+3 - Slide With Code
+========================================================
+
+```{r}
+summary(faithful)
+head(faithful)
+```
+
+4 -Slide With Plot
+========================================================
+
+```{r echo=TRUE}
+library(ggplot2)
+        g <- ggplot(faithful, mapping = aes(waiting, eruptions)) + geom_point()
+        g <- g + geom_smooth(method = loess)
+        g
+```
+
+5 - Slide With Plot
+========================================================
+
+```{r}
+library(caret)
+    fit <- train(eruptions ~ ., data = faithful, method = 'lm')
+    fit
+```
+
+
