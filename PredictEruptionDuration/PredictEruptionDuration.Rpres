@@ -1,16 +1,11 @@
 Predict Eruption Duration Shiny app
 ========================================================
 author: by Fabiobianco
-date: "29/12/2020"
+date: "December 29, 2020"
 autosize: true
 
 Shiny app logic descripotion
 ========================================================
-```{r include=FALSE}
-library(rmarkdown)
-library(ggplot2)
-```
-
 <small>In this Shiny app we apply a *Polinomial Regression Model* to the *Faithful Dataset* to predict the Eruption duration. What you will see is that the prediction improves as the degree of the polynomial increases.
 The Faithful dataset contains details of the eruption duration and the waiting time in between eruptions of the [Old Faithful Geyser](https://en.wikipedia.org/wiki/Old_Faithful) in Yellowstone National Park in Wyoming, United States.</small>
 
@@ -39,6 +34,7 @@ include_graphics("faithfuldataset.png")
 
 Eruption prediction with 1 degree Polynomial
 ========================================================
+<small>In this case the relationship between the independent variable x and the dependent variable y is modelled as an 1 degree polynomial in x</small>
 ```{r}
 waiting_time = 50 # Waiting time for eruption prediction
 pol_degree1 = 1   # Polinomial degree
@@ -81,7 +77,7 @@ include_graphics("faithful1.png")
 
 Eruption prediction with 4 degree Polynomial
 ========================================================
-
+<small>In this case the relationship between the independent variable x and the dependent variable y is modelled as an 4 degree polynomial in x</small>
 ```{r}
 waiting_time = 50 # Waiting time for eruption prediction
 pol_degree4 = 4   # Polinomial degree

@@ -1,0 +1,12 @@
+name: PredictEruptionDuration
+title: PredictEruptionDuration
+username:
+account: fabiobianco
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 3434465
+bundleId: 4039347
+url: https://fabiobianco.shinyapps.io/PredictEruptionDuration/
+when: 1609260643.07085
+asMultiple: FALSE
+asStatic: FALSE

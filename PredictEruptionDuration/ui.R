@@ -14,7 +14,7 @@ shinyUI(fluidPage(theme = shinytheme("lumen"),
         position = "left",
         sidebarPanel(
             helpText("An nth degree polynomial in x"),
-            HTML('<center><img src="polinomial-model.PNG" width="200"></center>'),
+            HTML('<center><img src="polinomial-model.PNG" width="400"></center>'),
             p(),
             # Select the polinomial degree
             sliderInput("Predictor",
@@ -36,7 +36,7 @@ shinyUI(fluidPage(theme = shinytheme("lumen"),
          p("Selecting a ", em("Polinomial Regression Model"), "and the",em("number of waiting time"),"and the model will predicts the expected duration of the eruption!"),
         #Plot Output
         p(),
-        HTML('<center><img src="Faithful.PNG" width="400"></center>'),
+        HTML('<center><img src="Faithful.PNG" width="500"></center>'),
         p(),
         plotOutput("distPlot", height = "400px"),
         textOutput(outputId = "desc"),
