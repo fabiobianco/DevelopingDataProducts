@@ -5,8 +5,8 @@ account: fabiobianco
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 3434465
-bundleId: 4039347
+bundleId: 4047795
 url: https://fabiobianco.shinyapps.io/PredictEruptionDuration/
-when: 1609260643.07085
+when: 1609497579.0129
 asMultiple: FALSE
 asStatic: FALSE
