@@ -4,10 +4,24 @@ author: by Fabiobianco
 date: "December 29, 2020"
 autosize: true
 
+
+
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+
+
+- <small>[*The Github repo link*] (https://github.com/fabiobianco/DevelopingDataProducts/tree/main/PredictEruptionDuration)</small>
+- <small>[*The Shiny app link*] (https://fabiobianco.shinyapps.io/PredictEruptionDuration/)</small>
+
+
 Shiny app logic descripotion
 ========================================================
 <small>In this Shiny app we apply a *Polinomial Regression Model* to the *Faithful Dataset* to predict the Eruption duration. What you will see is that the prediction improves as the degree of the polynomial increases.
-The Faithful dataset contains details of the eruption duration and the waiting time in between eruptions of the [Old Faithful Geyser](https://en.wikipedia.org/wiki/Old_Faithful) in Yellowstone National Park in Wyoming, United States.</small>
+The *Faithful dataset* contains details of the eruption duration and the waiting time in between eruptions of the [Old Faithful Geyser](https://en.wikipedia.org/wiki/Old_Faithful) in Yellowstone National Park in Wyoming, United States.</small>
 
 
 ```r
@@ -23,6 +37,7 @@ head(faithful)
 5     4.533      85
 6     2.883      55
 ```
+
 
 
 Plot the Faithful Dataset

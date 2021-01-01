@@ -6,16 +6,15 @@
 library(shiny)
 library(shinythemes)
 
+
+
 # Define UI for application
 shinyUI(fluidPage(theme = shinytheme("lumen"),
-    titlePanel("Old Faithful Geyser Eruption Predictor App"),
+    titlePanel("Old Faithful Geyser Eruption Predictor Shiny App"),
     # Sidebar with a slider input for number of predictors to be selected
     sidebarLayout(
         position = "left",
         sidebarPanel(
-            helpText("An nth degree polynomial in x"),
-            HTML('<center><img src="polinomial-model.PNG" width="400"></center>'),
-            p(),
             # Select the polinomial degree
             sliderInput("Predictor",
                         "Select the predictor number (the polynomial degree)",
@@ -28,18 +27,36 @@ shinyUI(fluidPage(theme = shinytheme("lumen"),
                         min = 40,
                         max = 100,
                         value = 70),
+            p(),
+            p(),
+            p(),
+            tags$a(href="https://github.com/fabiobianco/DevelopingDataProducts/tree/main/PredictEruptionDuration", em("The Shiny app Github repo link")),
+            p(),
         ),
 
-        # Output: Show a plot of the Faithful dataset and the predicted eruption value
+        # Output: Show the Faithful dataset and the predicted eruption value
         mainPanel(
-         p("This webapp allows you to apply a ",tags$a(href="https://en.wikipedia.org/wiki/Polynomial_regression", "Polynomial Regression Model"),"to the Faithful dataset."),
-         p("Selecting a ", em("Polinomial Regression Model"), "and the",em("number of waiting time"),"and the model will predicts the expected duration of the eruption!"),
-        #Plot Output
-        p(),
-        HTML('<center><img src="Faithful.PNG" width="500"></center>'),
-        p(),
-        plotOutput("distPlot", height = "400px"),
-        textOutput(outputId = "desc"),
+         p("This webapp allows you to apply a ",tags$a(href="https://en.wikipedia.org/wiki/Polynomial_regression",
+           "Polynomial Regression Model"),"to the Faithful dataset."),
+         p("A polynomial of degree", em("n"), "at x can be represented in this form"),
+         includeMarkdown("PolinomialFormulaN.md"),
+         p(),
+         p(),
+         p("For example, by selecting a value of", em("n") ,"equal to one, a model of this type will be obtained"),
+         includeMarkdown("PolinomialFormula1.md"),
+         p(),
+         p(),
+         p("... but selecting a value of", em("n"),"equal to four, a model of this type will be obtained"),
+         includeMarkdown("PolinomialFormula4.md"),
+         p(),
+         p("So selecting the", em("degree of the polynomial to be used to build the predictive model"),
+          "and the",em("number of waiting time"), "and the model will predicts the expected duration of the eruption!"),
+         #Plot Output
+         p(),
+         HTML('<center><img src="Faithful.PNG" width="500"></center>'),
+         p(),
+         plotOutput("distPlot", height = "400px"),
+         textOutput(outputId = "desc"),
         )
     )
 ))
