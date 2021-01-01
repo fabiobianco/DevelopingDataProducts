@@ -30,7 +30,7 @@ shinyUI(fluidPage(theme = shinytheme("lumen"),
             p(),
             p(),
             p(),
-            HTML('<center><img src="Faithful.PNG" width="200"></center>'),
+            HTML('<center><img src="Faithful.PNG" width="300" height="200" alt="Aleq"></center>'),
             p(),
             tags$a(href="https://github.com/fabiobianco/DevelopingDataProducts/tree/main/PredictEruptionDuration", em("The Shiny app Github repo link")),
             p(),
@@ -55,7 +55,7 @@ shinyUI(fluidPage(theme = shinytheme("lumen"),
           "and the",em("number of waiting time"), "and the model will predicts the expected duration of the eruption!"),
          #Plot Output
          p(),
-         plotOutput("distPlot", height = "400px"),
+         plotOutput("distPlot", width="600" , height = "400px"),
          textOutput(outputId = "desc"),
         )
     )

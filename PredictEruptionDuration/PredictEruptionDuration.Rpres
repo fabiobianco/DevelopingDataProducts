@@ -1,7 +1,7 @@
 Predict Eruption Duration Shiny app
 ========================================================
 author: by Fabiobianco
-date: "December 29, 2020"
+date: "January 1, 2021"
 autosize: true
 
 
